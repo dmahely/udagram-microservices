@@ -15,13 +15,12 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - echo pwd
   - cd $TRAVIS_BUILD_DIR/udagram-users
-  - docker build -t "$DOCKER_USERNAME"/udagram-users:latest
+  - docker build "$DOCKER_USERNAME"/udagram-users:latest
   - cd $TRAVIS_BUILD_DIR/udagram-feed
-  - docker build -t "$DOCKER_USERNAME"/udagram-feed:latest
+  - docker build "$DOCKER_USERNAME"/udagram-feed:latest
   - cd $TRAVIS_BUILD_DIR/udagram-frontend
-  - docker build -t "$DOCKER_USERNAME"/udagram-frontend:latest
+  - docker build "$DOCKER_USERNAME"/udagram-frontend:latest
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u dmahely --password-stdin
