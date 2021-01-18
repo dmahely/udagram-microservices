@@ -20,11 +20,11 @@ spec:
         imagePullPolicy: Always  
         resources:
           requests:
-            memory: "128Mi"
-            cpu: "1G"
+            memory: "64Mi"
+            cpu: "250m"
           limits:
             memory: "500Mi"
-            cpu: "2G"                  
+            cpu: "500m"                  
         env:
         - name: URL
           valueFrom:
@@ -64,16 +64,16 @@ spec:
         - name: POSTGRES_PASSWORD
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: env-secret
               key: POSTGRES_PASSWORD
         - name: POSTGRES_USERNAME
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: env-secret
               key: POSTGRES_USERNAME      
         volumeMounts:
         - name: aws-secret
-          mountPath: "/.aws/"
+          mountPath: "/root/.aws/"
           readOnly: true        
       restartPolicy: Always
       volumes:
